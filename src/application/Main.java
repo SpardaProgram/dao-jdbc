@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.dao.DaoFactory;
+import model.dao.DepartmentDao;
 import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
@@ -14,6 +15,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		SellerDao sellerDao = DaoFactory.createSellerDao();
+		DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 		System.out.println("=== TEST 1: seller findById ===");
 		Seller seller = sellerDao.findById(3);
 		System.out.println(seller);
@@ -41,11 +43,38 @@ public class Main {
 		sellerDao.update(seller);
 		System.out.println("Update completed");
 		
-		System.out.println("\n=== TEST 6: seller delete ===");
+		//System.out.println("\n=== TEST 6: seller delete ===");
+		//System.out.print("Enter id for delete test: ");
+		//int id = sc.nextInt();
+		//sellerDao.deleteById(id);
+		//System.out.println("Delete completed");
+		
+		System.out.println("\n=== TEST 7: department findById ===");
+		department = departmentDao.findById(3);
+		System.out.println(department);
+		
+		System.out.println("\n=== TEST 8: department findAll ===");
+		List<Department> dep = departmentDao.findAll();
+		for (Department obj : dep) {
+			System.out.println(obj);
+		}
+		
+		//System.out.println("\n=== TEST 9: department insert ===");
+		//Department newDepartment = new Department(null,"Games");
+		//departmentDao.insert(newDepartment);
+		//System.out.println("Inserted! New id = " + newDepartment);
+		
+		System.out.println("\n=== TEST 10: department update ===");
+		department = departmentDao.findById(1);
+		department.setName("Tools");
+		departmentDao.update(department);
+		System.out.println("Update completed!");
+		
+		System.out.println("\n=== TEST 11: department delete ===");
 		System.out.print("Enter id for delete test: ");
 		int id = sc.nextInt();
-		sellerDao.deleteById(id);
-		System.out.println("Delete completed");
+		departmentDao.deleteById(id);
+		System.out.println("Delete complete!");
 		
 		sc.close();
 		
